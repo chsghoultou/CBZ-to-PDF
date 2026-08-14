@@ -24,3 +24,7 @@ for FolderName in os.listdir(FolderPath):
         PdfOutput = os.path.join(os.path.dirname(SubFolderPath), f"{FolderName}.pdf")
         with open(PdfOutput, "wb") as WritePdf:
             WritePdf.write(img2pdf.convert([str(page) for page in ImagePaths]))
+
+for ZipFile in os.listdir(FolderPath):
+    if ZipFile.endswith(".zip"):
+        os.rename(os.path.join(FolderPath, ZipFile), os.path.join(FolderPath, ZipFile.replace(".zip", ".cbz")))
