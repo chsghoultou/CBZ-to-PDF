@@ -1,6 +1,7 @@
 import glob
 import img2pdf
 import os
+import shutil
 import zipfile
 
 FolderPath = input("Please input the path to your folder: ")
@@ -28,3 +29,20 @@ for FolderName in os.listdir(FolderPath):
 for ZipFile in os.listdir(FolderPath):
     if ZipFile.endswith(".zip"):
         os.rename(os.path.join(FolderPath, ZipFile), os.path.join(FolderPath, ZipFile.replace(".zip", ".cbz")))
+
+while True:
+    DeleteFolders = input("Delete the folders?(y/n)")
+    if DeleteFolders == 'y':
+        DeleteFolders = True
+        break
+    if DeleteFolders == 'n':
+        DeleteFolders = False
+        break
+    else:
+        continue
+
+if DeleteFolders:
+    for FolderName in os.listdir(FolderPath):
+        SubFolderPath = os.path.join(FolderPath, FolderName)
+        if os.path.isdir(SubFolderPath):
+            shutil.rmtree(SubFolderPath)
